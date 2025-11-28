@@ -97,18 +97,20 @@ export default function Form() {
 								</button>
 							</>
 						) : (
-							<div className="todo__button-container">
+							<div className="todo__container">
 								{todo.text}{' '}
-								<button
-									onClick={() => remove(todo.id)}
-									className="todo__button">
-									Delete
-								</button>
-								<button
-									onClick={() => startEdit(todo.id)}
-									className="todo__button">
-									Edit
-								</button>
+								<div className="todo__button-container">
+									<button
+										onClick={() => remove(todo.id)}
+										className="todo__button">
+										Delete
+									</button>
+									<button
+										onClick={() => startEdit(todo.id)}
+										className="todo__button">
+										Edit
+									</button>
+								</div>
 							</div>
 						)}
 					</li>
