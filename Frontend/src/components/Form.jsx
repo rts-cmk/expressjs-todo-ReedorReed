@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import './Form.sass';
 
 export default function Form() {
 	const [text, setText] = useState('');
@@ -59,19 +60,22 @@ export default function Form() {
 	}
 
 	return (
-		<>
-			<form onSubmit={addTodo}>
+		<div className="todo">
+			<form onSubmit={addTodo} className="todo__form">
 				<input
 					type="text"
 					value={text}
 					onChange={(event) => setText(event.target.value)}
 					placeholder="Add todo..."
+					className="todo__input"
 				/>
-				<button type="submit">Add</button>
+				<button type="submit" className="todo__button">
+					+
+				</button>
 			</form>
-			<ul>
+			<ul className="todo__ul">
 				{todos.map((todo) => (
-					<li key={todo.id}>
+					<li key={todo.id} className="todo__li">
 						{editingId === todo.id ? (
 							<>
 								<input
@@ -83,19 +87,33 @@ export default function Form() {
 									}}
 									autoFocus
 								/>
-								<button onClick={() => saveEdit(todo.id)}>Save</button>
-								<button onClick={cancelEdit}>Cancel</button>
+								<button
+									onClick={() => saveEdit(todo.id)}
+									className="todo__button">
+									Save
+								</button>
+								<button onClick={cancelEdit} className="todo__button">
+									Cancel
+								</button>
 							</>
 						) : (
-							<>
+							<div className="todo__button-container">
 								{todo.text}{' '}
-								<button onClick={() => remove(todo.id)}>Delete</button>
-								<button onClick={() => startEdit(todo.id)}>Edit</button>
-							</>
+								<button
+									onClick={() => remove(todo.id)}
+									className="todo__button">
+									Delete
+								</button>
+								<button
+									onClick={() => startEdit(todo.id)}
+									className="todo__button">
+									Edit
+								</button>
+							</div>
 						)}
 					</li>
 				))}
 			</ul>
-		</>
+		</div>
 	);
 }
